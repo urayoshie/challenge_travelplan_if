@@ -1,11 +1,11 @@
 puts <<~TEXT
-  旅行プランを選択してください。
+      旅行プランを選択してください。
 
-  1. 沖縄旅行（10000円）
-  2. 北海道旅行（20000円）
-  3. 九州旅行（15000円）
+      1. 沖縄旅行（10000円）
+      2. 北海道旅行（20000円）
+      3. 九州旅行（15000円）
 
-TEXT
+      TEXT
 
 # choose the plan
 while true
@@ -17,46 +17,41 @@ end
 
 case plan_num
 when 1
-    place = "沖縄"
-    price = 10000
+  place = "沖縄"
+  price = 10000
 
 when 2
-    place = "北海道"
-    price = 20000
+  place = "北海道"
+  price = 20000
 
 when 3
   place = "九州"
   price = 15000
-
 end
 
 puts <<~TEXT
 
-#{place}旅行ですね。
-何人で予約されますか？
+      #{place}旅行ですね。
+      何人で予約されますか？
 
-TEXT
+      TEXT
 
 # decide the num of guests
 while true
   print "人数を入力 > "
   guest_num = gets.to_i
-  break if (guest_num.to_i > 0)
-    puts "1以上を入力してください。"
+  break if guest_num > 0
+  puts "1以上を入力してください。"
 end
 
 puts ""
 puts "#{guest_num }名ですね。"
 
-if guest_num < 5
-  puts <<~TEXT
-  合計金額は、#{price * guest_num}円になります。
-  TEXT
+# calculation
+total_price = price * guest_num
 
-else
-  puts <<~TEXT
-  #{guest_num }名以上ですので10%割引となります。
-  合計金額は、#{(price * guest_num * 0.9).floor}円になります。
-  TEXT
-
+if guest_num >= 5
+  puts "5名以上ですので10%割引となります。"
+  total_price *= 0.9
 end
+  puts "合計金額は、#{total_price.floor}円になります."
